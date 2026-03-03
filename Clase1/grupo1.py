@@ -1,5 +1,5 @@
 def check_stock(product: dict, requested_units: int) -> tuple[bool, int]:
-    if not product.get("current_stock") : 
+    if not product.get("current_stock"): 
         raise Exception("No existe el atributo current_stock en el diccionario producto")
     if product["current_stock"] < 0 :
         raise Exception("El valor del atributo current_stock no puede ser negativo")
