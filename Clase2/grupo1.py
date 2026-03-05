@@ -10,7 +10,7 @@ class WeatherForecastClient:
     DEFAULT_LONGITUDE = -2.0
     DEFAULT_NUM_DAYS = 10
 
-    def __init__(self, latitude=40.0, longitude=-2.0):
+    def __init__(self, latitude=DEFAULT_LATITUDE, longitude=DEFAULT_LONGITUDE):
         self.base_url = "https://api.open-meteo.com/v1/forecast"
         self.params = {
             "latitude": latitude,
@@ -54,3 +54,4 @@ WeatherForecastClient(100,0).get_max_wind_speed(10)
 WeatherForecastClient(0,200).get_max_wind_speed(10)
 WeatherForecastClient(0,"pepe").get_max_wind_speed(10)
 WeatherForecastClient(0,0).get_max_wind_speed(10)
+WeatherForecastClient(10.0,10.0).get_max_wind_speed(10)
