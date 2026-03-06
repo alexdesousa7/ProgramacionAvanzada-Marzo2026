@@ -1,11 +1,18 @@
 import requests
 import re
 
+# Alejandro - Incluyo comentarios de mejora a lo largo del código, comenzando por # SUGGESTION.
+# En general, está bastante bien, solamente os comento un tema de estilo a lo largo de todo 
+# el código que habéis hecho y también una observación sobre los métodos que estáis usando para
+# solo conectar a la API, que veo que son cosas auxiliares para vosotros para dentro de la clase.
+
 class APIClient:
     def __init__(self):
         self.base_url = "https://catfact.ninja/"
     
-    def only1Fact(self, maxlenght):
+    def only1Fact(self, maxlenght): # SUGGESTION: En Python se suele ir a snake_case para nombres
+        # de funciones / métodos para variables, es decir: def only_one_fact(self, max_length) ...
+        # (esto en todo el código)
         try:
             url = f"{self.base_url}fact"
             params = {"max_length":maxlenght}
@@ -36,6 +43,12 @@ class APIClient:
     
         
     def factCats(self, factNumber = 9999, maxLength = 9999, isTroll = False):
+        # SUGGESTION: Viendo que vuestro método principal es este y que es el que se ocupa de
+        # "limpiar" o seleccionar los datos desde el json y devolver simplemente las frases 
+        # (bien hecho, así debe ser), yo dejaría los métodos only1Fact y moreThan1Fact como métodos
+        # privados, ya que son auxiliares para dentro de vuestra clase, ningún cliente debería
+        # llamarlos desde fuera si solo queréis proporcionar la utilidad de obtener frases, no necesitan 
+        # llamar a esos otros.
         if factNumber == 1:
             json = self.only1Fact(maxLength)
         else:
